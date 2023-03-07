@@ -1,15 +1,9 @@
-description 'Amakuu and Ktoś Blueberry'
+description 'Bush Looting Resource'
 
 fx_version "adamant"
 games {"rdr3"}
 rdr3_warning 'I acknowledge that this is a prerelease build of RedM, and I am aware my resources *will* become incompatible once RedM ships.'
 
-client_scripts {
-   'client/client.lua',
-   'config.lua',
-}
-
-server_scripts {
-   'server/server.lua',
-   'config.lua',
-}
+client_script 'client/client.lua'
+shared_script 'config.lua'
+server_script 'server/server.lua'
