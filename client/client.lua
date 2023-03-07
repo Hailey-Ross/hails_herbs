@@ -30,7 +30,7 @@ Citizen.CreateThread(function()
         local playerped = PlayerPedId()
         if checkbush < GetGameTimer() and not IsPedOnMount(playerped) and not IsPedInAnyVehicle(playerped) then
             bush = GetClosestBush()
-            checkbush = GetGameTimer() + 500
+            checkbush = GetGameTimer() + 5000
         end
         if bush then
             if active == false then
