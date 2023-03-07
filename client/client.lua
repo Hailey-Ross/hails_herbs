@@ -3,6 +3,8 @@ local active = false
 local oldBush = {}
 local bush
 local checkbush = 0
+local cooldowntimer = 5000
+local debug = false
 
 local Bushgroup = GetRandomIntInRange(0, 0xffffff)
 
@@ -30,7 +32,7 @@ Citizen.CreateThread(function()
         local playerped = PlayerPedId()
         if checkbush < GetGameTimer() and not IsPedOnMount(playerped) and not IsPedInAnyVehicle(playerped) then
             bush = GetClosestBush()
-            checkbush = GetGameTimer() + 5000
+            checkbush = GetGameTimer() + cooldowntimer
         end
         if bush then
             if active == false then
@@ -67,7 +69,7 @@ function GetClosestBush()
     local playerped = PlayerPedId()
     local itemSet = CreateItemset(true)
     local size = Citizen.InvokeNative(0x59B57C4B06531E1E, GetEntityCoords(playerped), 2.0, itemSet, 3, Citizen.ResultAsInteger())
-    --print(size)
+    if debug == true then print(size) end
     if size > 0 then
         for index = 0, size - 1 do
             local entity = GetIndexedItemInItemset(index, itemSet)
