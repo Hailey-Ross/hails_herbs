@@ -1,4 +1,4 @@
-description 'Bush Looting Resource'
+description 'hails_herbs resource'
 
 fx_version "adamant"
 games {"rdr3"}
