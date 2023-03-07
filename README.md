@@ -14,4 +14,9 @@ Formerly redemrp_blackberry by [ktos93](https://github.com/ktos93)
 
 ## Instructions
 
-- Coming Soon
+- Extract download into your resources folder
+- Add the resource in your server.cfg
+
+- Run SQL File to add the items to DB
+- Restart / Start your Server
+- In-game, stand near a Bush and use the prompt.
