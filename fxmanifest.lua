@@ -1,4 +1,7 @@
-description 'hails_herbs resource'
+name "hails_herbs"
+author "Hailey-Ross"
+description "Herb Picking Resource"
+url "https://github.com/Hailey-Ross/hails_herbs"
 
 fx_version "adamant"
 games {"rdr3"}
