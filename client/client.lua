@@ -3,14 +3,14 @@ local active = false
 local oldBush = {}
 local bush
 local checkbush = 0
-local cooldowntimer = 5000
-local debug = false
+local cooldowntimer = Config.cooldowntimer
+local debug = Config.debug
 
 local Bushgroup = GetRandomIntInRange(0, 0xffffff)
 
 function Collect()
     Citizen.CreateThread(function()
-        local str = 'Collect'
+        local str = Config.text
         local wait = 0
         CollectPrompt = Citizen.InvokeNative(0x04F97DE45A519419)
         PromptSetControlAction(CollectPrompt, 0xD9D0E1C0)
@@ -30,7 +30,7 @@ Citizen.CreateThread(function()
     while true do
         Wait(1)
         local playerped = PlayerPedId()
-        if checkbush < GetGameTimer() and not IsPedOnMount(playerped) and not IsPedInAnyVehicle(playerped) then
+        if checkbush < GetGameTimer() and not IsPedDeadOrDying(playerped) and not IsPedInAnyVehicle(playerped, true) then
             bush = GetClosestBush()
             checkbush = GetGameTimer() + cooldowntimer
         end
@@ -45,7 +45,7 @@ Citizen.CreateThread(function()
                 goCollect()
             end
         else
-
+            Citizen.Wait(1000)
         end
     end
 end)
