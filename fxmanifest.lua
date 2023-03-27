@@ -11,7 +11,7 @@ client_script 'client/client.lua'
 shared_script 'config.lua'
 server_script 'server/server.lua'
 
-version '0.1'
+version '0.1.0'
 vorp_checker 'yes'
 vorp_name '^4Resource version Check^3'
 vorp_github 'https://github.com/Hailey-Ross/hails_herbs'
