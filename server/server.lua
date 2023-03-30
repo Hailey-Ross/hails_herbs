@@ -4,6 +4,23 @@ Config.alertcolor = configAlertColor
 Config.alerttext = configAlertText
 Config.items = Items
 
+--[[
+local Items = {
+	{item = "consumable_acorn", name = "an Acorn", amountToGive = math.random(1,4)},
+	{item = "consumable_herb_evergreen_huckleberry", name = "some Evergreen Huckleberries", amountToGive = math.random(1,2)},
+	--{item = "tobacco", name = "some Indian Tobacco", amountToGive = math.random(1,3)},
+	--{item = "consumable_herb_oregano", name = "some Oregano", amountToGive = math.random(1,3)},
+    --{item = "consumable_herb_vanilla_flower", name = "a Vanilla scented Flower", amountToGive = math.random(1,3)},
+	--{item = "consumable_herb_wintergreen_berry", name = "some Wintergreen Berries", amountToGive = math.random(1,1)},
+	{item = "consumable_peach", name = "a Peach", amountToGive = math.random(1,2)},
+	{item = "consumable_pear", name = "a Pear", amountToGive = math.random(1,2)},
+	{item = "apple", name = "an Apple", amountToGive = math.random(1,1)},
+	{item = "carrots", name = "a Carrot", amountToGive = math.random(1,2)},
+	{item = "blueberry", name = "some Blueberries", amountToGive = math.random(1,3)},
+	--{item = "Chanterelles", name = "some Chanterelle Mushrooms", amountToGive = math.random(1,1)}
+}
+]]
+
 local VorpCore = {}
 
 TriggerEvent("getCore",function(core)
@@ -18,7 +35,7 @@ AddEventHandler('vorp_picking:addItem', function()
 		if v.item == FinalLoot then
 			VorpInv.addItem(source, FinalLoot, v.amountToGive)
 			LootsToGive = {}
-			TriggerClientEvent("vorp:TipBottom", source, ''..configNameColor .. User.firstname.. ' ' ..User.lastname .. configAlertColor.. ':' ..configAlertText .. v.name, 3000)
+			TriggerClientEvent("vorp:TipBottom", source, ''.. configNameColor .. User.firstname .. ' ' .. User.lastname .. configAlertColor .. ':' .. configAlertText .. v.name, 3000)
 		end
 	end
 end)
