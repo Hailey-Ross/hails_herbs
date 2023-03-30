@@ -1,8 +1,8 @@
 VorpInv = exports.vorp_inventory:vorp_inventoryApi()
-local Config.namecolor = configNameColor
-local Config.alertcolor = configAlertColor
-local Config.alerttext = configAlertText
-local Config.items = Items
+Config.namecolor = configNameColor
+Config.alertcolor = configAlertColor
+Config.alerttext = configAlertText
+Config.items = Items
 
 local VorpCore = {}
 
@@ -18,7 +18,7 @@ AddEventHandler('vorp_picking:addItem', function()
 		if v.item == FinalLoot then
 			VorpInv.addItem(source, FinalLoot, v.amountToGive)
 			LootsToGive = {}
-			TriggerClientEvent("vorp:TipBottom", source, ''..configNameColor.. ..User.firstname.. ' ' ..User.lastname.. ..configAlertColor.. ':' ..configAlertText.. ..v.name, 3000)
+			TriggerClientEvent("vorp:TipBottom", source, ''..configNameColor .. User.firstname.. ' ' ..User.lastname .. configAlertColor.. ':' ..configAlertText .. v.name, 3000)
 		end
 	end
 end)
