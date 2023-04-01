@@ -1,11 +1,10 @@
 VorpInv = exports.vorp_inventory:vorp_inventoryApi()
+local configNameColor = Config.namecolor
+local configAlertColor = Config.alertcolor
+local configAlertText = Config.alerttext
+local Items = Config.items
 
-local VorpCore = {}
-
-TriggerEvent("getCore",function(core)
-    VorpCore = core
-end)
-
+--[[
 local Items = {
 	{item = "consumable_acorn", name = "an Acorn", amountToGive = math.random(1,4)},
 	{item = "consumable_herb_evergreen_huckleberry", name = "some Evergreen Huckleberries", amountToGive = math.random(1,2)},
@@ -20,6 +19,13 @@ local Items = {
 	{item = "blueberry", name = "some Blueberries", amountToGive = math.random(1,3)},
 	--{item = "Chanterelles", name = "some Chanterelle Mushrooms", amountToGive = math.random(1,1)}
 }
+]]
+
+local VorpCore = {}
+
+TriggerEvent("getCore",function(core)
+    VorpCore = core
+end)
 
 RegisterServerEvent('vorp_picking:addItem')
 AddEventHandler('vorp_picking:addItem', function()
@@ -29,7 +35,7 @@ AddEventHandler('vorp_picking:addItem', function()
 		if v.item == FinalLoot then
 			VorpInv.addItem(source, FinalLoot, v.amountToGive)
 			LootsToGive = {}
-			TriggerClientEvent("vorp:TipBottom", source, '~t6~'..User.firstname.. ' ' ..User.lastname.. '~q~: Oh, I found ' ..v.name, 3000)
+			TriggerClientEvent("vorp:TipBottom", source, ''.. configNameColor .. User.firstname .. ' ' .. User.lastname .. configAlertColor .. ':' .. configAlertText .. v.name, 3000)
 		end
 	end
 end)
