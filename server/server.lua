@@ -1,8 +1,8 @@
 VorpInv = exports.vorp_inventory:vorp_inventoryApi()
-Config.namecolor = configNameColor
-Config.alertcolor = configAlertColor
-Config.alerttext = configAlertText
-Config.items = Items
+local configNameColor = Config.namecolor
+local configAlertColor = Config.alertcolor
+local configAlertText = Config.alerttext
+local Items = Config.items
 
 --[[
 local Items = {
