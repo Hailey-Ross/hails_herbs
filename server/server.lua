@@ -2,9 +2,11 @@ VorpInv = exports.vorp_inventory:vorp_inventoryApi()
 local configNameColor = Config.namecolor
 local configAlertColor = Config.alertcolor
 local configAlertText = Config.alerttext
+local configFailText = Config.Failtext
+local alertToggler = Config.alertToggle
+local devTemp = false
 local Items = Config.items
 local debug = Config.debug
-local alertToggler = Config.alertToggle
 
 local VorpCore = {}
 
@@ -46,7 +48,7 @@ function LootToGive(source)
 		local picked = LootsToGive[value]
 		return picked
 	else
-		--FIX ME--if alertToggler then TriggerClientEvent("vorp:TipBottom", source, ''.. configNameColor .. User.firstname .. ' ' .. User.lastname .. configAlertColor .. ':' .. configFailText .. v.name, 3000) end
+		if devTemp then TriggerClientEvent("vorp:TipBottom", source, ''.. configNameColor .. User.firstname .. ' ' .. User.lastname .. configAlertColor .. ':' .. configFailText .. v.name, 3000) end
 		if debug == true then print("Failed to pick berries/herbs.") end
 	end
 end
