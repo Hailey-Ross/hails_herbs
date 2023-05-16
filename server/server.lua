@@ -31,13 +31,12 @@ function LootToGive(source)
 	local LootsToGive = {}
 	local playerCamRot = GetPlayerCameraRotation(source)
 	local playerPingSeed = GetPlayerPing(source)
-	local specialSauce = playerPingSeed / playerCamRot.y
+	local specialSauce = playerPingSeed / playerCamRot.x
 	local fortyfours = 0.414444144 * playerCamRot.z + playerPingSeed
-	if specialSauce <= 0 then specialSauce = GetGameTimer() / playerCamRot.z * fortyfours end
 	local gameTimerSeed = GetGameTimer()
 	local preSeeding = playerCamRot.x * gameTimerSeed * fortyfours
-	local RandomSeed = preSeeding / specialSauce
-	if debug == true then print("Seed Generated: " .. RandomSeed .. " | [Modifiers applied] | Ping: " .. playerPingSeed .. ", Special Mod: " .. specialSauce .. ", Special Mod Deux: " .. fortyfours .. ", Camera Rotation Z: " .. playerCamRot.z .. ", Camera Rotation X: " .. playerCamRot.x .. ", Camera Rotation Y: " .. playerCamRot.y .. ", GameTimer: " .. gameTimerSeed .. " ") end
+	local RandomSeed = preSeeding * specialSauce
+	if debug == true then print("Seed Generated: " .. RandomSeed .. " | [Modifiers applied] | Ping: " .. playerPingSeed .. ", Special Mod: " .. specialSauce .. ", Special Mod Deux: " .. fortyfours .. ", Camera Rotation Z: " .. playerCamRot.z .. ", Camera Rotation X: " .. playerCamRot.x .. ", GameTimer: " .. gameTimerSeed .. " ") end
 	math.randomseed(RandomSeed)
 	for k,v in pairs(Items) do
 		table.insert(LootsToGive,v.item)
