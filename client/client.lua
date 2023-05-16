@@ -31,10 +31,11 @@ Citizen.CreateThread(function()
         Wait(1)
         local playerped = PlayerPedId()
         local playerDead = IsPedDeadOrDying(playerped)
-        local playerMounted = IsPedInAnyVehicle(playerped, true) or IsPedOnMount(playerped)
+        local playerHorse = IsPedOnMount(playerped)
+        local playerWagon = IsPedInAnyVehicle(playerped, true)
         local playerMoving = IsPedWalking(playerped) or IsPedSprinting(playerped) or IsPedRunning(playerped)
         if checkbush < GetGameTimer() then
-            if not playerMounted and not playerDead then
+            if not playerWagon and not playerHorse and not playerDead then
                 bush = GetClosestBush()
                 checkbush = GetGameTimer() + cooldowntimer
             else
@@ -46,7 +47,7 @@ Citizen.CreateThread(function()
                 local BushgroupName = CreateVarString(10, 'LITERAL_STRING', "Bush")
                 PromptSetActiveGroupThisFrame(Bushgroup, BushgroupName)
             end
-            if PromptHasHoldModeCompleted(CollectPrompt) and not playerMounted and not playerDead and not playerMoving then
+            if PromptHasHoldModeCompleted(CollectPrompt) and not playerHorse and not playerWagon and not playerDead and not playerMoving then
                 active = true
                 goCollect()
             end
