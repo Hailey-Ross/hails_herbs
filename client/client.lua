@@ -52,7 +52,7 @@ Citizen.CreateThread(function()
                 goCollect()
             end
         else
-            Wait(100)
+            Wait(10)
         end
     end
 end)
