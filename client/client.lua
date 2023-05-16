@@ -51,8 +51,10 @@ Citizen.CreateThread(function()
                 active = true
                 goCollect()
             end
+        elseif playerMoving then
+            Wait(400)
         else
-            Wait(10)
+            Wait(100)
         end
     end
 end)
