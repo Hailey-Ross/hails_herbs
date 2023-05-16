@@ -10,22 +10,22 @@ local Bushgroup = GetRandomIntInRange(0, 0xffffff)
 
 function Collect()
     Citizen.CreateThread(function()
-        local str = Config.text
-        local wait = 0
-        CollectPrompt = Citizen.InvokeNative(0x04F97DE45A519419)
-        PromptSetControlAction(CollectPrompt, 0xD9D0E1C0)
-        str = CreateVarString(10, 'LITERAL_STRING', str)
-        PromptSetText(CollectPrompt, str)
-        PromptSetEnabled(CollectPrompt, true)
-        PromptSetVisible(CollectPrompt, true)
-        PromptSetHoldMode(CollectPrompt, true)
-        PromptSetGroup(CollectPrompt, Bushgroup)
-        PromptRegisterEnd(CollectPrompt)
+            local str = Config.text
+            local wait = 0
+            CollectPrompt = Citizen.InvokeNative(0x04F97DE45A519419)
+            PromptSetControlAction(CollectPrompt, 0xD9D0E1C0)
+            str = CreateVarString(10, 'LITERAL_STRING', str)
+            PromptSetText(CollectPrompt, str)
+            PromptSetEnabled(CollectPrompt, true)
+            PromptSetVisible(CollectPrompt, true)
+            PromptSetHoldMode(CollectPrompt, true)
+            PromptSetGroup(CollectPrompt, Bushgroup)
+            PromptRegisterEnd(CollectPrompt)
     end)
 end
 
 Citizen.CreateThread(function()
-    Wait(400)
+    Wait(1)
     Collect()
     while true do
         Wait(1)
@@ -33,20 +33,21 @@ Citizen.CreateThread(function()
         local playerDead = IsPedDeadOrDying(playerped)
         local playerWagon = IsPedInAnyVehicle(playerped, true)
         local playerHorse = IsPedOnMount(playerped)
+        local playerMoving = IsPedWalking(playerped) or IsPedSprinting(playerped) or IsPedRunning(playerped)
         if checkbush < GetGameTimer() then
-            if not playerHorse and not playerMounted and not playerDead then
+            if not playerHorse and not playerWagon and not playerDead then
                 bush = GetClosestBush()
                 checkbush = GetGameTimer() + cooldowntimer
             else
                 bush = nil
             end
         end
-        if bush then
+        if bush and not playerMoving then
             if active == false then
                 local BushgroupName = CreateVarString(10, 'LITERAL_STRING', "Bush")
                 PromptSetActiveGroupThisFrame(Bushgroup, BushgroupName)
             end
-            if PromptHasHoldModeCompleted(CollectPrompt) and not playerHorse and not playerMounted and not playerDead then
+            if PromptHasHoldModeCompleted(CollectPrompt) and not playerHorse and not playerWagon and not playerDead and not playerMoving then
                 active = true
                 goCollect()
             end
