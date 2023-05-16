@@ -1,9 +1,5 @@
 Config = {}
 
-Config.debug = false
-
-Config.cooldowntimer = 5000
-
 --[[
 
     Colors:
@@ -27,12 +23,22 @@ Config.cooldowntimer = 5000
 
 ]]
 
-Config.namecolor = '~t6~'
-Config.alertcolor = '~q~'
+Config.debug = false
+
+Config.cooldowntimer = 5000
+
+-->        ALERTS SECTION        <--
+
+Config.alertToggle = true -- True enables tip messages on successfully picking berries | False for opposite
+
+Config.namecolor = '~t6~' -- Color for Players Name included in Alert Text
+Config.alertcolor = '~q~' -- Color for general text in alert
 
 Config.alerttext = ' Oh, I found '
 
-Config.text = 'Collect'
+-- -- -- -- -- -- -- -- -- -- -- -- --
+
+Config.text = 'Collect' -- Prompt Message text for picking berries
 
 Config.items = {
 	{item = "consumable_acorn", name = "an Acorn", amountToGive = math.random(1,4)},

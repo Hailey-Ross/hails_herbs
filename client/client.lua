@@ -1,87 +1,51 @@
-local CollectPrompt
-local active = false
-local oldBush = {}
-local bush
-local checkbush = 0
-local cooldowntimer = Config.cooldowntimer
-local debug = Config.debug
+Config = {}
 
-local Bushgroup = GetRandomIntInRange(0, 0xffffff)
+--[[
 
-function Collect()
-    Citizen.CreateThread(function()
-        local str = Config.text
-        local wait = 0
-        CollectPrompt = Citizen.InvokeNative(0x04F97DE45A519419)
-        PromptSetControlAction(CollectPrompt, 0xD9D0E1C0)
-        str = CreateVarString(10, 'LITERAL_STRING', str)
-        PromptSetText(CollectPrompt, str)
-        PromptSetEnabled(CollectPrompt, true)
-        PromptSetVisible(CollectPrompt, true)
-        PromptSetHoldMode(CollectPrompt, true)
-        PromptSetGroup(CollectPrompt, Bushgroup)
-        PromptRegisterEnd(CollectPrompt)
-    end)
-end
+    Colors:
+        Red          ~e~
+        Yellow       ~o~
+        Orange       ~d~
+        Gray         ~m~
+        White        ~q~
+        Light Gray   ~t~
+        Black        ~v~
+        Pink         ~u~
+        Blue         ~pa~
+        Purple       ~t1~
+        Orange?      ~t2~
+        Light Blue   ~t3~
+        Yellow?      ~t4~
+        Light Pink   ~t5~
+        Green        ~t6~
+        Dark Blue    ~t7~
+        Light Red    ~t8~
 
-Citizen.CreateThread(function()
-    Wait(2000)
-    Collect()
-    while true do
-        Wait(1)
-        local playerped = PlayerPedId()
-        if checkbush < GetGameTimer() and not IsPedDeadOrDying(playerped) and not IsPedInAnyVehicle(playerped, true) then
-            bush = GetClosestBush()
-            checkbush = GetGameTimer() + cooldowntimer
-        end
-        if bush then
-            if active == false then
-                local BushgroupName  = CreateVarString(10, 'LITERAL_STRING', "Bush")
-                PromptSetActiveGroupThisFrame(Bushgroup, BushgroupName)
-            end
-            if PromptHasHoldModeCompleted(CollectPrompt) then
-                active = true
-                oldBush[tostring(bush)] = true
-                goCollect()
-            end
-        else
-            Citizen.Wait(1000)
-        end
-    end
-end)
+]]
 
-function goCollect()
-    local playerPed = PlayerPedId()
-    RequestAnimDict("mech_pickup@plant@berries")
-    while not HasAnimDictLoaded("mech_pickup@plant@berries") do
-        Wait(100)
-    end
-    TaskPlayAnim(playerPed, "mech_pickup@plant@berries", "enter_lf", 8.0, -0.5, -1, 0, 0, true, 0, false, 0, false)
-    Wait(800)
-    TaskPlayAnim(playerPed, "mech_pickup@plant@berries", "base", 8.0, -0.5, -1, 0, 0, true, 0, false, 0, false)
-    Wait(2300)
-    TriggerServerEvent('vorp_picking:addItem')
-    active = false
-    ClearPedTasks(playerPed)
-end
+Config.debug = false
 
-function GetClosestBush()
-    local playerped = PlayerPedId()
-    local itemSet = CreateItemset(true)
-    local size = Citizen.InvokeNative(0x59B57C4B06531E1E, GetEntityCoords(playerped), 2.0, itemSet, 3, Citizen.ResultAsInteger())
-    if debug == true then print(size) end
-    if size > 0 then
-        for index = 0, size - 1 do
-            local entity = GetIndexedItemInItemset(index, itemSet)
-            local model_hash = GetEntityModel(entity)
-            if (model_hash ==  477619010 or model_hash ==  85102137 or model_hash ==  -1707502213) and not oldBush[tostring(entity)] then
-                return entity
-            end
-        end
-    else
-    end
+Config.cooldowntimer = 5000
 
-    if IsItemsetValid(itemSet) then
-        DestroyItemset(itemSet)
-    end
-end
+-->        ALERTS SECTION        <--
+
+Config.alertToggle = true -- True enables tip messages on successfully picking berries | False for opposite
+
+Config.namecolor = '~t6~' -- Color for Players Name included in Alert Text
+Config.alertcolor = '~q~' -- Color for general text in alert
+
+Config.alerttext = ' Oh, I found '
+
+-- -- -- -- -- -- -- -- -- -- -- -- --
+
+Config.text = 'Collect' -- Berry Picking Prompt Message text
+
+Config.items = {
+	{item = "consumable_acorn", name = "an Acorn", amountToGive = math.random(1,4)},
+	{item = "consumable_herb_evergreen_huckleberry", name = "some Evergreen Huckleberries", amountToGive = math.random(1,2)},
+	{item = "consumable_peach", name = "a Peach", amountToGive = math.random(1,2)},
+	{item = "consumable_pear", name = "a Pear", amountToGive = math.random(1,2)},
+	{item = "apple", name = "an Apple", amountToGive = math.random(1,1)},
+	{item = "carrots", name = "a Carrot", amountToGive = math.random(1,2)},
+	{item = "blueberry", name = "some Blueberries", amountToGive = math.random(1,3)},
+}
