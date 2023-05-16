@@ -29,13 +29,13 @@ function LootToGive(source)
 	local LootsToGive = {}
 	local playerCamRot = GetPlayerCameraRotation(source)
 	local playerPingSeed = GetPlayerPing(source)
-	local specialSauce = playerPingSeed / 7
-	if specialSauce <= 0 then specialSauce = GetGameTimer() / 10 * fortyfours end
+	local specialSauce = playerPingSeed / playerCamRot.y
 	local fortyfours = 0.414444144 * playerCamRot.z + playerPingSeed
+	if specialSauce <= 0 then specialSauce = GetGameTimer() / playerCamRot.z * fortyfours end
 	local gameTimerSeed = GetGameTimer()
 	local preSeeding = playerCamRot.x * gameTimerSeed * fortyfours
 	local RandomSeed = preSeeding / specialSauce
-	if debug == true then print("Seed Generated: " .. RandomSeed .. " | [Modifiers applied] | Ping: " .. playerPingSeed .. ", Special Mod: " .. specialSauce .. ", Special Mod Deux: " .. fortyfours .. ", Camera Rotation Z: " .. playerCamRot.z .. ", Camera Rotation X: " .. playerCamRot.x .. ", GameTimer: " .. gameTimerSeed .. " ") end
+	if debug == true then print("Seed Generated: " .. RandomSeed .. " | [Modifiers applied] | Ping: " .. playerPingSeed .. ", Special Mod: " .. specialSauce .. ", Special Mod Deux: " .. fortyfours .. ", Camera Rotation Z: " .. playerCamRot.z .. ", Camera Rotation X: " .. playerCamRot.x .. ", Camera Rotation Y: " .. playerCamRot.y .. ", GameTimer: " .. gameTimerSeed .. " ") end
 	math.randomseed(RandomSeed)
 	for k,v in pairs(Items) do
 		table.insert(LootsToGive,v.item)
@@ -45,5 +45,8 @@ function LootToGive(source)
 		local value = math.random(1,#LootsToGive)
 		local picked = LootsToGive[value]
 		return picked
+	else
+		--FIX ME--if alertToggler then TriggerClientEvent("vorp:TipBottom", source, ''.. configNameColor .. User.firstname .. ' ' .. User.lastname .. configAlertColor .. ':' .. configFailText .. v.name, 3000) end
+		if debug == true then print("Failed to pick berries/herbs.") end
 	end
 end
