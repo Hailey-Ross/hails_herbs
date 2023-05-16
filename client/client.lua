@@ -33,18 +33,21 @@ Citizen.CreateThread(function()
         local playerDead = IsPedDeadOrDying(playerped)
         local playerWagon = IsPedInAnyVehicle(playerped, true)
         local playerHorse = IsPedOnMount(playerped)
-        if checkbush < GetGameTimer() and not playerDead and not playerWagon and not playerHorse then
-            bush = GetClosestBush()
-            checkbush = GetGameTimer() + cooldowntimer
+        if checkbush < GetGameTimer() then
+            if not playerHorse and not playerMounted and not playerDead then
+                bush = GetClosestBush()
+                checkbush = GetGameTimer() + cooldowntimer
+            else
+                bush = nil
+            end
         end
-        if not playerHorse and not playerMounted and not playerDead and bush then
+        if bush then
             if active == false then
                 local BushgroupName = CreateVarString(10, 'LITERAL_STRING', "Bush")
                 PromptSetActiveGroupThisFrame(Bushgroup, BushgroupName)
             end
             if PromptHasHoldModeCompleted(CollectPrompt) and not playerHorse and not playerMounted and not playerDead then
                 active = true
-                oldBush[tostring(bush)] = true
                 goCollect()
             end
         else
@@ -65,6 +68,8 @@ function goCollect()
     Wait(2300)
     TriggerServerEvent('vorp_picking:addItem')
     ClearPedTasks(playerPed)
+    oldBush[tostring(bush)] = true
+    if debug == true then print("Berry Picking Success, adding " .. bush .. " to list of oldBush") end
     active = false
     bush = nil
     checkbush = GetGameTimer() + cooldowntimer
