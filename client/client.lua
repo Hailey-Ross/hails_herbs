@@ -39,7 +39,7 @@ Citizen.CreateThread(function()
         end
         if not playerHorse and not playerMounted and not playerDead and bush then
             if active == false then
-                local BushgroupName  = CreateVarString(10, 'LITERAL_STRING', "Bush")
+                local BushgroupName = CreateVarString(10, 'LITERAL_STRING', "Bush")
                 PromptSetActiveGroupThisFrame(Bushgroup, BushgroupName)
             end
             if PromptHasHoldModeCompleted(CollectPrompt) and not playerHorse and not playerMounted and not playerDead then
