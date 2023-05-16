@@ -1,3 +1,11 @@
+<0.1.2>
+- Fixes to remove Wagon Berry Picking
+- Fixes to remove Horse Berry Picking
+- Fixed Prompt reappearing after picking issue
+- Better Seeding for Math.Random
+- Fix for infinite picking glitch
+- hopefully proper radius for bushes adjusted
+- Better cooldown implementation
 <0.1.1>
 - NEW Config Options Added
 - Alert Text added to Config
