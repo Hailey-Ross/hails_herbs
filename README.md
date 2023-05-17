@@ -5,7 +5,7 @@ Formerly redemrp_blackberry by [ktos93](https://github.com/ktos93)
 - Coming Soon
 
 ## TODO
-- Coming Soon
+- Ability to set which model of bush to pick from
 
 ## Dependencies
 - [Vorp-Core](https://github.com/VORPCORE/vorp-core-lua)
