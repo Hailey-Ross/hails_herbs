@@ -6,6 +6,7 @@
 - Fix for infinite picking glitch
 - hopefully proper radius for bushes adjusted
 - Better cooldown implementation
+- Improved out to be more verbose in Debugging mode
 <0.1.1>
 - NEW Config Options Added
 - Alert Text added to Config
