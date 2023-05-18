@@ -82,7 +82,7 @@ function GetClosestBush()
     local playerped = PlayerPedId()
     local itemSet = CreateItemset(true)
     local size = Citizen.InvokeNative(0x59B57C4B06531E1E, GetEntityCoords(playerped), 2.0, itemSet, 3, Citizen.ResultAsInteger())
-    if debug == true then print(size) end
+    --if debug == true then print(size) end
     if size > 0 then
         for index = 0, size - 1 do
             local entity = GetIndexedItemInItemset(index, itemSet)
