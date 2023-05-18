@@ -72,7 +72,7 @@ function goCollect()
     TriggerServerEvent('vorp_picking:addItem')
     ClearPedTasks(playerPed)
     oldBush[tostring(bush)] = true
-    if debug == true then print("Berry Picking Success, adding " .. bush .. " to list of oldBush") end
+    if debug == true then print("[Hails.Herbs]\n Picking Success, adding " .. bush .. " to list of oldBush") end
     active = false
     bush = nil
     checkbush = GetGameTimer() + cooldowntimer

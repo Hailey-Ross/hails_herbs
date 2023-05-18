@@ -41,13 +41,13 @@ function LootToGive(source)
 		local gameTimerSeed = GetGameTimer()
 		local preSeeding = playerCamRot.x * gameTimerSeed * fortyfours
 		local RandomSeed = preSeeding * specialSauce
-		if debug == true then print("Seed Generated: " .. RandomSeed .. " | [Modifiers applied] | Ping: " .. playerPingSeed .. ", Special Mod: " .. specialSauce .. ", Special Mod Deux: " .. fortyfours .. ", Camera Rotation Z: " .. playerCamRot.z .. ", Camera Rotation X: " .. playerCamRot.x .. ", GameTimer: " .. gameTimerSeed .. " ") end
+		if debug == true then print("[Hails.Herbs]\n Seed Generated: " .. RandomSeed .. "\n [Modifiers applied]\n Ping: " .. playerPingSeed .. "\n Special Mod: " .. specialSauce .. "\n Special Mod Deux: " .. fortyfours .. "\n Camera Rotation Z: " .. playerCamRot.z .. "\n Camera Rotation X: " .. playerCamRot.x .. "\n GameTimer: " .. gameTimerSeed .. " ") end
 		math.randomseed(RandomSeed)
 		local value = math.random(1,#LootsToGive)
 		local picked = LootsToGive[value]
 		return picked
 	else
 		if devTemp then TriggerClientEvent("vorp:TipBottom", source, ''.. configNameColor .. User.firstname .. ' ' .. User.lastname .. configAlertColor .. ':' .. configFailText .. v.name, 3000) end
-		if debug == true then print("Failed to pick berries/herbs.") end
+		if debug == true then print("[Hails.Herbs]\n Failed to pick berries/herbs.") end
 	end
 end
