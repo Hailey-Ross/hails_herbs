@@ -42,7 +42,7 @@ function LootToGive(source)
 		local gameTimerSeed = GetGameTimer()
 		local preSeeding = playerCamRot.x * gameTimerSeed * fortyfours
 		local RandomSeed = preSeeding * specialSauce
-		if not onesyncCompat then RandomSeed = gameTimerSeed / 2 end
+		if not onesyncCompat then RandomSeed = gameTimerSeed / 2 * 0.414444144 end
 		if debug and onesyncCompat then print("[Hails.Herbs]\n Seed Generated: " .. RandomSeed .. "\n [Modifiers applied]\n Ping: " .. playerPingSeed .. "\n Special Mod: " .. specialSauce .. "\n Special Mod Deux: " .. fortyfours .. "\n Camera Rotation Z: " .. playerCamRot.z .. "\n Camera Rotation X: " .. playerCamRot.x .. "\n GameTimer: " .. gameTimerSeed .. " ") end
 		math.randomseed(RandomSeed)
 		local value = math.random(1,#LootsToGive)
