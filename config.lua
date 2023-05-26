@@ -30,6 +30,7 @@ Config.cooldowntimer = 5000
 -->        ALERTS SECTION        <--
 
 Config.alertToggle = true -- True enables tip messages on successfully picking berries | False for opposite
+Config.OneSync = true     -- True enables Onesync compatibility, False disables the onesync functionality.
 
 Config.namecolor = '~t6~' -- Color for Players Name included in Alert Text
 Config.alertcolor = '~q~' -- Color for general text in alert
