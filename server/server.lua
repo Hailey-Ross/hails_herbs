@@ -4,9 +4,10 @@ local configAlertColor = Config.alertcolor
 local configAlertText = Config.alerttext
 local configFailText = Config.Failtext
 local alertToggler = Config.alertToggle
-local devTemp = false
+local onesyncCompat = Config.onesyncCompat
 local Items = Config.items
 local debug = Config.debug
+local devTemp = false
 
 local VorpCore = {}
 
@@ -42,7 +43,7 @@ function LootToGive(source)
 		local preSeeding = playerCamRot.x * gameTimerSeed * fortyfours
 		local RandomSeed = preSeeding * specialSauce
 		if not onesyncCompat then RandomSeed = gameTimerSeed / 2 end
-		if debug == true then print("[Hails.Herbs]\n Seed Generated: " .. RandomSeed .. "\n [Modifiers applied]\n Ping: " .. playerPingSeed .. "\n Special Mod: " .. specialSauce .. "\n Special Mod Deux: " .. fortyfours .. "\n Camera Rotation Z: " .. playerCamRot.z .. "\n Camera Rotation X: " .. playerCamRot.x .. "\n GameTimer: " .. gameTimerSeed .. " ") end
+		if debug and onesyncCompat then print("[Hails.Herbs]\n Seed Generated: " .. RandomSeed .. "\n [Modifiers applied]\n Ping: " .. playerPingSeed .. "\n Special Mod: " .. specialSauce .. "\n Special Mod Deux: " .. fortyfours .. "\n Camera Rotation Z: " .. playerCamRot.z .. "\n Camera Rotation X: " .. playerCamRot.x .. "\n GameTimer: " .. gameTimerSeed .. " ") end
 		math.randomseed(RandomSeed)
 		local value = math.random(1,#LootsToGive)
 		local picked = LootsToGive[value]
