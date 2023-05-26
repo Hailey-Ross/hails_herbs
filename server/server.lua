@@ -50,6 +50,6 @@ function LootToGive(source)
 		return picked
 	else
 		if devTemp then TriggerClientEvent("vorp:TipBottom", source, ''.. configNameColor .. User.firstname .. ' ' .. User.lastname .. configAlertColor .. ':' .. configFailText .. v.name, 3000) end
-		if debug == true then print("[Hails.Herbs]\n Failed to pick berries/herbs.") end
+		if debug then print("[Hails.Herbs]\n Failed to pick berries/herbs.") end
 	end
 end
