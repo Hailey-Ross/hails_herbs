@@ -26,7 +26,6 @@ Config = {}
 Config.debug = false
 Config.vdebug = false
 
-Config.cooldowntimer = 5  -- Cooldown duration in seconds
 Config.OneSync = true     -- True enables Onesync compatibility, False disables the onesync functionality.
 
 -->        ALERTS SECTION        <--
@@ -42,7 +41,8 @@ Config.Failtext = ' I do not think I can eat these berries. . . ' -- UNUSED/LEAV
 
 -- -- -- -- -- -- -- -- -- -- -- -- --
 
-Config.text = 'Collect' -- Prompt Message text for picking berries
+Config.cooldowntimer = 5  -- Cooldown duration in seconds
+Config.text = 'Collect'   -- Prompt Message text for picking berries
 
 Config.items = {
 	{item = "consumable_acorn", name = "an Acorn", amountToGive = math.random(1,4)},
