@@ -36,8 +36,8 @@ Config.alertDuration = 3  -- Sets duration of Alerts in seconds
 Config.namecolor = '~t6~' -- Color for Players Name included in Alert Text
 Config.alertcolor = '~q~' -- Color for general text in alert
 
-Config.alerttext = ' Oh, I found '
-Config.Failtext = ' I do not think I can eat these berries. . . ' -- UNUSED/LEAVE AS IS FOR NOW.
+Config.alerttext = 'Oh, I found'
+Config.Failtext = ' I do not have enough room in my pockets to carry these..' -- Fail Text if carrying too much weight or to many of that item
 
 -- -- -- -- -- -- -- -- -- -- -- -- --
 

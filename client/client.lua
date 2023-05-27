@@ -72,7 +72,6 @@ function goCollect()
     TriggerServerEvent('vorp_picking:addItem')
     ClearPedTasks(playerPed)
     oldBush[tostring(bush)] = true
-    if debug and not vdebug then print("[Hails.Herbs]\n Picking Success") end
     if debug and vdebug then print("[Hails.Herbs]\n Picking Success, adding " .. bush .. " to list of oldBush") end
     active = false
     bush = nil
