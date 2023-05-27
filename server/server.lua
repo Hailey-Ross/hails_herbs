@@ -5,6 +5,7 @@ local configAlertText = Config.alerttext
 local configFailText = Config.Failtext
 local alertToggler = Config.alertToggle
 local onesyncCompat = Config.OneSync
+local alertDuration = Config.alertDuration * 1000
 local Items = Config.items
 local debug = Config.debug
 local vdebug = Config.vdebug
@@ -24,7 +25,7 @@ AddEventHandler('vorp_picking:addItem', function()
 		if v.item == FinalLoot then
 			VorpInv.addItem(source, FinalLoot, v.amountToGive)
 			LootsToGive = {}
-			if alertToggler then TriggerClientEvent("vorp:TipBottom", source, ''..configNameColor..User.firstname..' '..User.lastname..configAlertColor..':'..configAlertText..v.name, 3000) end
+			if alertToggler then TriggerClientEvent("vorp:TipBottom", source, ''..configNameColor..User.firstname..' '..User.lastname..configAlertColor..':'..configAlertText..v.name, alertDuration) end
 			if debug and vdebug then print("[Hails.Herbs]\n"..User.firstname.." "..User.lastname.." found "..v.name.. " x"..v.amountToGive) end
 		end
 	end
@@ -52,7 +53,7 @@ function LootToGive(source)
 		local picked = LootsToGive[value]
 		return picked
 	else
-		if devTemp then TriggerClientEvent("vorp:TipBottom", source, ''..configNameColor..User.firstname..' '..User.lastname..configAlertColor..':'..configFailText..v.name, 3000) end
+		if devTemp then TriggerClientEvent("vorp:TipBottom", source, ''..configNameColor..User.firstname..' '..User.lastname..configAlertColor..':'..configFailText..v.name, alertDuration) end
 		if debug and not vdebug then print("[Hails.Herbs]\n"..User.firstname.." "..User.lastname.." encountered invalid LootsToGive value") end
 	end
 end
