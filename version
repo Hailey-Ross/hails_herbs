@@ -1,6 +1,8 @@
 <0.1.3>
 - Minor Onesync Compatibility Patch
 - Minor fixes to RNG Seeding
+- Minor optimizatons to code
+- Preperation for Native-Aware Update in future
 <0.1.2>
 - Fixes to remove Wagon Berry Picking
 - Fixes to remove Horse Berry Picking
