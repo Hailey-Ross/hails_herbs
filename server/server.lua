@@ -25,7 +25,7 @@ AddEventHandler('vorp_picking:addItem', function()
 			VorpInv.addItem(source, FinalLoot, v.amountToGive)
 			LootsToGive = {}
 			if alertToggler then TriggerClientEvent("vorp:TipBottom", source, ''..configNameColor..User.firstname..' '..User.lastname..configAlertColor..':'..configAlertText..v.name, 3000) end
-			if debug then print("[Hails.Herbs]\n"..User.firstname.." "..User.lastname.." found "..v.amountToGive.." "..v.name..) end
+			if debug and vdebug then print("[Hails.Herbs]\n"..User.firstname.." "..User.lastname.." found "..v.name.. " x"..v.amountToGive) end
 		end
 	end
 end)
