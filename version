@@ -4,6 +4,7 @@
 - Minor optimizatons to code
 - Preperation for Native-Aware Update in future
 - Added customizable alert duration to config file
+- Minor adjustments to Cooldown timer config option
 <0.1.2>
 - Fixes to remove Wagon Berry Picking
 - Fixes to remove Horse Berry Picking
