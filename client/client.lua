@@ -1,12 +1,11 @@
 local CollectPrompt
+local cooldowntimer = Config.cooldowntimer
+local debug = Config.debug
+local vdebug = Config.vdebug
 local active = false
 local oldBush = {}
 local bush
 local checkbush = 0
-local cooldowntimer = Config.cooldowntimer
-local debug = Config.debug
-local vdebug = Config.vdebug
-
 local Bushgroup = GetRandomIntInRange(0, 0xffffff)
 
 function Collect()
