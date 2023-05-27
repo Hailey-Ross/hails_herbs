@@ -1,5 +1,5 @@
 local CollectPrompt
-local cooldowntimer = Config.cooldowntimer
+local cooldowntimer = Config.cooldowntimer * 1000
 local debug = Config.debug
 local vdebug = Config.vdebug
 local active = false

@@ -26,7 +26,7 @@ Config = {}
 Config.debug = false
 Config.vdebug = false
 
-Config.cooldowntimer = 5000
+Config.cooldowntimer = 5  -- Cooldown duration in seconds
 Config.OneSync = true     -- True enables Onesync compatibility, False disables the onesync functionality.
 
 -->        ALERTS SECTION        <--
