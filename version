@@ -3,6 +3,7 @@
 - Minor fixes to RNG Seeding
 - Minor optimizatons to code
 - Preperation for Native-Aware Update in future
+- Added Alert customizable duration to config file
 <0.1.2>
 - Fixes to remove Wagon Berry Picking
 - Fixes to remove Horse Berry Picking
