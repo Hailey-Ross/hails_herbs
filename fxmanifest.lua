@@ -1,6 +1,6 @@
 name "hails_herbs"
 author "Hailey-Ross"
-description "Herb Picking Resource"
+description "Berry Picking Resource"
 url "https://github.com/Hailey-Ross/hails_herbs"
 
 fx_version "adamant"
