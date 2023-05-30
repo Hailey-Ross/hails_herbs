@@ -3,8 +3,9 @@ local active = false
 local oldBush = {}
 local bush
 local checkbush = 0
-local cooldowntimer = Config.cooldowntimer
+local cooldowntimer = Config.cooldowntimer * 1000
 local debug = Config.debug
+local vdebug = Config.vdebug
 
 local Bushgroup = GetRandomIntInRange(0, 0xffffff)
 
@@ -51,8 +52,6 @@ Citizen.CreateThread(function()
                 active = true
                 goCollect()
             end
-        elseif playerMoving then
-            Wait(400)
         else
             Wait(100)
         end
@@ -72,7 +71,7 @@ function goCollect()
     TriggerServerEvent('vorp_picking:addItem')
     ClearPedTasks(playerPed)
     oldBush[tostring(bush)] = true
-    if debug == true then print("[Hails.Herbs]\n Picking Success, adding " .. bush .. " to list of oldBush") end
+    if vdebug then print("[Hails.Herbs]\n Picking Success, adding " .. bush .. " to list of oldBush") end
     active = false
     bush = nil
     checkbush = GetGameTimer() + cooldowntimer
@@ -82,7 +81,7 @@ function GetClosestBush()
     local playerped = PlayerPedId()
     local itemSet = CreateItemset(true)
     local size = Citizen.InvokeNative(0x59B57C4B06531E1E, GetEntityCoords(playerped), 2.0, itemSet, 3, Citizen.ResultAsInteger())
-    --if debug == true then print(size) end
+    if vdebug then print(size) end
     if size > 0 then
         for index = 0, size - 1 do
             local entity = GetIndexedItemInItemset(index, itemSet)

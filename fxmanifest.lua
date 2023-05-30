@@ -1,6 +1,6 @@
 name "hails_herbs"
 author "Hailey-Ross"
-description "Herb Picking Resource"
+description "Berry Picking Resource"
 url "https://github.com/Hailey-Ross/hails_herbs"
 
 fx_version "adamant"
@@ -11,7 +11,7 @@ client_script 'client/client.lua'
 shared_script 'config.lua'
 server_script 'server/server.lua'
 
-version '0.1.2'
+version '0.1.3'
 vorp_checker 'yes'
 vorp_name '^4Resource version Check^3'
 vorp_github 'https://github.com/Hailey-Ross/hails_herbs'
