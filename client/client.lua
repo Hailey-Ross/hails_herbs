@@ -5,7 +5,7 @@ local bush
 local checkbush = 0
 local cooldowntimer = Config.cooldowntimer * 1000
 local debug = Config.debug
-local debug = Config.vdebug
+local vdebug = Config.vdebug
 
 local Bushgroup = GetRandomIntInRange(0, 0xffffff)
 

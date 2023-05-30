@@ -2,9 +2,11 @@ VorpInv = exports.vorp_inventory:vorp_inventoryApi()
 local cooldowntimer = Config.cooldowntimer * 1000
 local configNameColor = Config.namecolor
 local configAlertColor = Config.alertcolor
+local configColonColor = Config.coloncolor
 local configAlertText = Config.alerttext
 local configFailText = Config.Failtext
 local alertToggler = Config.alertToggle
+local alertDuration = Config.alertDuration * 1000
 local Items = Config.items
 local debug = Config.debug
 local vdebug = Config.vdebug
@@ -26,9 +28,8 @@ AddEventHandler('vorp_picking:addItem', function()
 		if v.item == FinalLoot then
 			VorpInv.addItem(source, FinalLoot, v.amountToGive)
 			LootsToGive = {}
-			--if alertToggler then TriggerClientEvent("vorp:TipBottom", source, ''.. configNameColor .. User.firstname .. ' ' .. User.lastname .. configAlertColor .. ':' .. configAlertText .. v.name, 3000) end
-			if alertToggler then VorpCore.NotifyTip(source, ''.. configNameColor .. User.firstname .. ' ' .. User.lastname .. configAlertColor .. ':' .. configAlertText .. v.name, 3000) end
-			if vdebug then print("[Hails.Herbs]\n" .. User.firstname .. " " .. User.lastname .. " " .. configAlertText .. v.name) end
+			if alertToggler then VorpCore.NotifyObjective(source, configNameColor .. User.firstname .. ' ' .. User.lastname .. configColonColor .. ': ' .. configAlertColor .. configAlertText .. ' ' .. v.name, alertDuration) end
+			if vdebug then print(" " .. User.firstname .. " " .. User.lastname .. " found " .. v.item) end
 		end
 	end
 end)
@@ -53,7 +54,7 @@ function LootToGive(source)
 		local picked = LootsToGive[value]
 		return picked
 	else
-		if vdebug then TriggerClientEvent("vorp:TipBottom", source, ''.. configNameColor .. User.firstname .. ' ' .. User.lastname .. configAlertColor .. ':' .. configFailText, 3000) end
+		if vdebug then VorpCore.NotifyObjective(source, configNameColor .. User.firstname .. ' ' .. User.lastname .. configAlertColor .. ': ' .. configFailText, alertDuration) end
 		if debug then print("[Hails.Herbs]\n Failed to pick berries/herbs.") end
 	end
 end
