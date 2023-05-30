@@ -1,11 +1,11 @@
 local CollectPrompt
-local cooldowntimer = Config.cooldowntimer * 1000
-local debug = Config.debug
-local vdebug = Config.vdebug
 local active = false
 local oldBush = {}
 local bush
 local checkbush = 0
+local cooldowntimer = Config.cooldowntimer
+local debug = Config.debug
+
 local Bushgroup = GetRandomIntInRange(0, 0xffffff)
 
 function Collect()
@@ -43,7 +43,7 @@ Citizen.CreateThread(function()
             end
         end
         if bush and not playerMoving then
-            if not active then
+            if active == false then
                 local BushgroupName = CreateVarString(10, 'LITERAL_STRING', "Bush")
                 PromptSetActiveGroupThisFrame(Bushgroup, BushgroupName)
             end
@@ -72,7 +72,7 @@ function goCollect()
     TriggerServerEvent('vorp_picking:addItem')
     ClearPedTasks(playerPed)
     oldBush[tostring(bush)] = true
-    if debug and vdebug then print("[Hails.Herbs]\n Picking Success, adding " .. bush .. " to list of oldBush") end
+    if debug == true then print("[Hails.Herbs]\n Picking Success, adding " .. bush .. " to list of oldBush") end
     active = false
     bush = nil
     checkbush = GetGameTimer() + cooldowntimer
@@ -82,12 +82,12 @@ function GetClosestBush()
     local playerped = PlayerPedId()
     local itemSet = CreateItemset(true)
     local size = Citizen.InvokeNative(0x59B57C4B06531E1E, GetEntityCoords(playerped), 2.0, itemSet, 3, Citizen.ResultAsInteger())
-    if debug and vdebug then print(size) end
+    --if debug == true then print(size) end
     if size > 0 then
         for index = 0, size - 1 do
             local entity = GetIndexedItemInItemset(index, itemSet)
             local model_hash = GetEntityModel(entity)
-            if (model_hash == 477619010 or model_hash == 85102137 or model_hash == -1707502213) and not oldBush[tostring(entity)] then
+            if (model_hash ==  477619010 or model_hash ==  85102137 or model_hash ==  -1707502213) and not oldBush[tostring(entity)] then
                 return entity
             end
         end

@@ -24,25 +24,22 @@ Config = {}
 ]]
 
 Config.debug = false
-Config.vdebug = false
 
-Config.OneSync = true     -- True enables Onesync compatibility, False disables the onesync functionality.
+Config.cooldowntimer = 5000
 
 -->        ALERTS SECTION        <--
 
 Config.alertToggle = true -- True enables tip messages on successfully picking berries | False for opposite
-Config.alertDuration = 3  -- Sets duration of Alerts in seconds
 
 Config.namecolor = '~t6~' -- Color for Players Name included in Alert Text
 Config.alertcolor = '~q~' -- Color for general text in alert
 
-Config.alerttext = 'Oh, I found'
-Config.Failtext = ' I do not have enough room in my pockets to carry these..' -- Fail Text if carrying too much weight or to many of that item
+Config.alerttext = ' Oh, I found '
+Config.Failtext = ' I do not think I can eat these berries. . . ' -- UNUSED ATM
 
 -- -- -- -- -- -- -- -- -- -- -- -- --
 
-Config.cooldowntimer = 5  -- Cooldown duration in seconds
-Config.text = 'Collect'   -- Prompt Message text for picking berries
+Config.text = 'Collect' -- Prompt Message text for picking berries
 
 Config.items = {
 	{item = "consumable_acorn", name = "an Acorn", amountToGive = math.random(1,4)},

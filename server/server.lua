@@ -1,15 +1,12 @@
 VorpInv = exports.vorp_inventory:vorp_inventoryApi()
-local alertDuration = Config.alertDuration * 1000
 local configNameColor = Config.namecolor
 local configAlertColor = Config.alertcolor
 local configAlertText = Config.alerttext
 local configFailText = Config.Failtext
 local alertToggler = Config.alertToggle
-local onesyncCompat = Config.OneSync
-local vdebug = Config.vdebug
-local debug = Config.debug
-local Items = Config.items
 local devTemp = false
+local Items = Config.items
+local debug = Config.debug
 
 local VorpCore = {}
 
@@ -23,10 +20,9 @@ AddEventHandler('vorp_picking:addItem', function()
 	local User = VorpCore.getUser(source).getUsedCharacter
 	for k,v in pairs(Items) do
 		if v.item == FinalLoot then
-			VorpInv.addItem(source, v.name, v.amountToGive)
+			VorpInv.addItem(source, FinalLoot, v.amountToGive)
 			LootsToGive = {}
-			if alertToggler then TriggerClientEvent("vorp:TipBottom", source, ''..configNameColor..User.firstname..' '..User.lastname..configAlertColor..':'..configAlertText..v.name, alertDuration) end
-			if debug and vdebug then print("[Hails.Herbs]\n"..User.firstname.." "..User.lastname.." found "..v.name.. " x"..v.amountToGive) end
+			if alertToggler then TriggerClientEvent("vorp:TipBottom", source, ''.. configNameColor .. User.firstname .. ' ' .. User.lastname .. configAlertColor .. ':' .. configAlertText .. v.name, 3000) end
 		end
 	end
 end)
@@ -43,17 +39,15 @@ function LootToGive(source)
 		local specialSauce = playerPingSeed / playerCamRot.x
 		local fortyfours = 0.414444144 * playerCamRot.z + playerPingSeed
 		local gameTimerSeed = GetGameTimer()
-		local preSeeding = playerCamRot.x + gameTimerSeed * fortyfours
+		local preSeeding = playerCamRot.x * gameTimerSeed * fortyfours
 		local RandomSeed = preSeeding * specialSauce
-		if not onesyncCompat then RandomSeed = gameTimerSeed / 2 * 0.414444144 end
-		if debug and not vdebug then print("[Hails.Herbs]\n Seed Generated: "..RandomSeed) end
-		if debug and vdebug and onesyncCompat then print("[Hails.Herbs]\n Seed Generated: "..RandomSeed.."\n [Modifiers applied]\n Ping: "..playerPingSeed.."\n Special Mod: "..specialSauce.."\n Special Mod Deux: "..fortyfours.."\n Camera Rotation Z: "..playerCamRot.z.."\n Camera Rotation X: "..playerCamRot.x.."\n GameTimer: "..gameTimerSeed.." ") end
+		if debug == true then print("[Hails.Herbs]\n Seed Generated: " .. RandomSeed .. "\n [Modifiers applied]\n Ping: " .. playerPingSeed .. "\n Special Mod: " .. specialSauce .. "\n Special Mod Deux: " .. fortyfours .. "\n Camera Rotation Z: " .. playerCamRot.z .. "\n Camera Rotation X: " .. playerCamRot.x .. "\n GameTimer: " .. gameTimerSeed .. " ") end
 		math.randomseed(RandomSeed)
 		local value = math.random(1,#LootsToGive)
 		local picked = LootsToGive[value]
 		return picked
 	else
-		if devTemp then VorpCore.NotifyBottomRight(source, ''..configNameColor..User.firstname..' '..User.lastname..configAlertColor..': '..configFailText, alertDuration) end
-		if debug and not vdebug then print("[Hails.Herbs]\n"..User.firstname.." "..User.lastname.." encountered invalid LootsToGive value") end
+		if devTemp then TriggerClientEvent("vorp:TipBottom", source, ''.. configNameColor .. User.firstname .. ' ' .. User.lastname .. configAlertColor .. ':' .. configFailText .. v.name, 3000) end
+		if debug == true then print("[Hails.Herbs]\n Failed to pick berries/herbs.") end
 	end
 end
