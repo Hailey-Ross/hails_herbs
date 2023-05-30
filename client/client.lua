@@ -53,7 +53,7 @@ Citizen.CreateThread(function()
                 goCollect()
             end
         else
-            Wait(cooldowntimer)
+            Wait(100)
         end
     end
 end)

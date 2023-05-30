@@ -5,6 +5,7 @@ local configAlertColor = Config.alertcolor
 local configColonColor = Config.coloncolor
 local configAlertText = Config.alerttext
 local configFailText = Config.Failtext
+local configOnesync = Config.oneSync
 local alertToggler = Config.alertToggle
 local alertDuration = Config.alertDuration * 1000
 local Items = Config.items
@@ -18,7 +19,8 @@ TriggerEvent("getCore",function(core)
 end)
 
 if debug and not vdebug then print("Debug Mode: Enabled") end
-if debug and vdebug then print("Debug Mode: Enabled\nVerbose Debug Mode: Enabled\nCooldown timer registered as: " ..cooldowntimer) end
+if debug and vdebug then print("Debug Mode: Enabled\nVerbose-Debug Mode: Enabled\nCooldown timer registered as: " .. cooldowntimer) end
+if debug and not configOnesync then print("OneSync: DISABLED -- RNG Seeding will be hamstringed as a result. \nConsider moving to OneSync.") end
 
 RegisterServerEvent('vorp_picking:addItem')
 AddEventHandler('vorp_picking:addItem', function()
@@ -47,8 +49,9 @@ function LootToGive(source)
 		local fortyfours = 0.414444144 * playerCamRot.z + playerPingSeed
 		local gameTimerSeed = GetGameTimer()
 		local preSeeding = playerCamRot.x * gameTimerSeed * fortyfours
-		local RandomSeed = preSeeding * specialSauce
-		if vdebug then print("[Hails.Herbs]\n Seed Generated: " .. RandomSeed .. "\n [Modifiers applied]\n Ping: " .. playerPingSeed .. "\n Special Mod: " .. specialSauce .. "\n Special Mod Deux: " .. fortyfours .. "\n Camera Rotation Z: " .. playerCamRot.z .. "\n Camera Rotation X: " .. playerCamRot.x .. "\n GameTimer: " .. gameTimerSeed .. " ") elseif debug and not vdebug then print("[Hails.Herbs]\n Seed Generated: " .. RandomSeed) end
+		local RandomSeed = 0
+		if not configOnesync then RandomSeed = gameTimerSeed * 0.414444144 else RandomSeed = preSeeding * specialSauce end
+		if vdebug and not configOnesync then print("[Hails.Herbs]\n Seed Generated: " .. RandomSeed .. "\n [Modifiers applied]\n Ping: " .. playerPingSeed .. "\n Special Mod: " .. specialSauce .. "\n Special Mod Deux: " .. fortyfours .. "\n Camera Rotation Z: " .. playerCamRot.z .. "\n Camera Rotation X: " .. playerCamRot.x .. "\n GameTimer: " .. gameTimerSeed .. " ") elseif debug and not vdebug then print("[Hails.Herbs]\n Seed Generated: " .. RandomSeed) end
 		math.randomseed(RandomSeed)
 		local value = math.random(1,#LootsToGive)
 		local picked = LootsToGive[value]
