@@ -1,8 +1,8 @@
 <0.1.3>
 - Minor Onesync Compatibility Patch
 - Minor fixes to RNG Seeding
-- Minor optimizatons to code
-- Preperation for Native-Aware Update in future
+- Minor optimizations to code
+- Preparation for Native-Aware Update in future
 - Added customizable alert duration to config file
 - Minor adjustments to Cooldown timer config option
 - Verbose Debugging output minor updates
