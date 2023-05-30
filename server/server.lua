@@ -22,8 +22,7 @@ if debug and not vdebug then print("Debug Mode: Enabled") end
 if debug and vdebug then print("Debug Mode: Enabled\nVerbose-Debug Mode: Enabled") end
 if debug and configOnesync then print("OneSync: Enabled") end
 if debug and not configOnesync then print("OneSync: DISABLED -- RNG Seeding will be hampered as a result. \nConsider moving to OneSync.") end
-if vdebug then print("Cooldown timer registered as: " .. cooldowntimer) end
-
+if vdebug then print("Cooldown timer registered: " .. Config.cooldowntimer .. " seconds") end
 RegisterServerEvent('vorp_picking:addItem')
 AddEventHandler('vorp_picking:addItem', function()
 	local FinalLoot = LootToGive(source)
