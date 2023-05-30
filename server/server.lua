@@ -68,6 +68,6 @@ function LootToGive(source)
 		return picked
 	else
 		if vdebug then VorpCore.NotifyBottomRight(source, configFailText, alertDuration) end
-		if debug then print("[Hails.Herbs]\n Failed to pick berries/herbs. LootsToGive was Nil.") end
+		if debug then print("[Hails.Herbs]\n Failed to pick berries/herbs. LootsToGive was Nil value.") end
 	end
 end
