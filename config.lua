@@ -24,6 +24,7 @@ Config = {}
 ]]
 
 Config.debug = false
+Config.vdebug = false
 
 Config.cooldowntimer = 5000
 
