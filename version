@@ -6,6 +6,7 @@
 - Added customizable alert duration to config file
 - Minor adjustments to Cooldown timer config option
 - Verbose Debugging output minor updates
+- Added two Alert Styles; Classic and simplified
 <0.1.2>
 - Fixes to remove Wagon Berry Picking
 - Fixes to remove Horse Berry Picking
