@@ -1,3 +1,12 @@
+<0.1.3>
+- Minor Onesync Compatibility Patch
+- Minor fixes to RNG Seeding
+- Minor optimizations to code
+- Preparation for Native-Aware Update in future
+- Added customizable alert duration to config file
+- Minor adjustments to Cooldown timer config option
+- Verbose Debugging output minor updates
+- Added two Alert Styles; Classic and simplified
 <0.1.2>
 - Fixes to remove Wagon Berry Picking
 - Fixes to remove Horse Berry Picking
@@ -6,11 +15,11 @@
 - Fix for infinite picking glitch
 - hopefully proper radius for bushes adjusted
 - Better cooldown implementation
-- Improved out to be more verbose in Debugging mode
+- Improved output to be more verbose in Debugging mode
 <0.1.1>
 - NEW Config Options Added
 - Alert Text added to Config
 - Alert Color added to Config
 - Player name color added to Config
 <0.1.0>
-- Initial Release Version
+- Initial Release

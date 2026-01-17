@@ -23,23 +23,31 @@ Config = {}
 
 ]]
 
-Config.debug = false
+Config.debug = false -- Debugging Mode
+Config.vdebug = false -- Verbose Debug Mode
 
-Config.cooldowntimer = 5000
+Config.oneSync = true -- Leave as TRUE unless your server is NOT running OneSync
 
 -->        ALERTS SECTION        <--
 
 Config.alertToggle = true -- True enables tip messages on successfully picking berries | False for opposite
+-->   ALERT Type 1 is Classic with player name, ALERT Type 2 is minimal and appears in the bottom right corner.
+Config.alertType = 1 -- MUST BE: 1 or 2
+-->      Alert Duration (below) is in Seconds     <--
+Config.alertDuration = 3
 
 Config.namecolor = '~t6~' -- Color for Players Name included in Alert Text
+Config.coloncolor = '~m~' -- Color used for the Colon betweent he name and text output
 Config.alertcolor = '~q~' -- Color for general text in alert
 
-Config.alerttext = ' Oh, I found '
-Config.Failtext = ' I do not think I can eat these berries. . . ' -- UNUSED ATM
+Config.alerttext = 'Oh, I found'
+Config.Failtext = 'grabs the berries too agressively and they become pulp in their hands. .' -- UNUSED Error Handler
 
 -- -- -- -- -- -- -- -- -- -- -- -- --
 
 Config.text = 'Collect' -- Prompt Message text for picking berries
+-->      Cooldown Timer (below) is in Seconds     <--
+Config.cooldowntimer = 5
 
 Config.items = {
 	{item = "consumable_acorn", name = "an Acorn", amountToGive = math.random(1,4)},
